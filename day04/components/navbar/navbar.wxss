@@ -1,0 +1,15 @@
+.navbar-box {
+    /* 利用强制不换行的原理，让内容超出容器宽度，使我们的滚动容器生效 */
+    white-space: nowrap;
+}
+
+.navbar-box view {
+    /* 元素有行内块的特性 */
+
+    display: inline-block;
+    margin: 0 15rpx;
+}
+
+.nav-active {
+    border-bottom: 5rpx solid red;
+}

@@ -1,0 +1,21 @@
+<!-- components/header/header.wxml -->
+<view class="header-waper">
+    <!-- logo -->
+    <view class="logo">
+        <image class="" lazy-load="true" src="../../asset/images/logo.jfif"></image>
+    </view>
+    <!-- 搜索框 -->
+    <view>
+        <mp-searchbar bindselectresult="selectResult" search="{{search}}" />
+    </view>
+    <!-- 登录头像 -->
+    <view class="heade-me">
+        <mp-icon icon="me" color="black" size="{{25}}"></mp-icon>
+    </view>
+    <!-- 下载App -->
+    <view>
+        <button type="warn" class="heade-search" size="mini" plain="{{true}}" bindtap="warn">
+             下载App
+        </button>
+    </view>
+</view>

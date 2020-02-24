@@ -1,0 +1,4 @@
+<!-- 视频卡片 -->
+<view class="video-cart-box">
+    <Videocart class="video-cart-item" data="{{item}}" wx:for="{{vcartlist}}" wx:key="index" />
+</view>

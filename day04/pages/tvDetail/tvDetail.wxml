@@ -1,0 +1,6 @@
+<!-- pages/tvDetail/tvDetail.wxml -->
+<view>
+    <video wx:if="{{src}}" class="video" danmu-btn binderror="playErr" src="cloud://zhangguangju-lqf7i.7a68-zhangguangju-lqf7i-1301000122/{{tvid}}.mp4" loop controls autoplay show-play-btn show-center-play-btn="true" play-btn-position="bottom" direction="0">
+        <!-- <Barrage class="barrage"></Barrage> -->
+    </video>
+</view>

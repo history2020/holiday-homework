@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "Barrage": "../../miniprogram_npm/miniprogram-barrage"
+    }
+}

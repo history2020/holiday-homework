@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "Header": "../../components/header/header",
+        "Navbar": "../../components/navbar/navbar",
+        "Videocart": "../../components/videocart/videocart"
+
+    }
+}

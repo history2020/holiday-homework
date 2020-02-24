@@ -1,0 +1,16 @@
+<!-- pages/home/home.wxml -->
+<!-- 头部 -->
+<Header></Header>
+<!-- 导航 -->
+<Navbar data="{{navlist}}"></Navbar>
+<!-- 轮播 -->
+<!-- 引入轮播 -->
+<import src="./swiper/index.wxml"></import>
+<!-- 使用模板 -->
+<template is="swiper" data="{{list}}"></template>
+<!-- 视频卡片 -->
+<view class="video-cart-box">
+    <Videocart class="video-cart-item" data="{{item}}" wx:for="{{vcartlist}}" wx:key="index" />
+</view>
+<video class="" src="../../asset/(3 封私信 _ 80 条消息) 你手机里有想删却舍不得删的照片或视频吗？ - 知乎.mp4"></video>
+<video class="" src="cloud://websong-6omm9.7765-websong-6omm9-1300998725/1.mp4" initial-time="0" autoplay="false" loop="false" muted="false" direction="0"></video>

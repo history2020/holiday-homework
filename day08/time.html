@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .clock_box {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            border-radius: 50%;
+            border: 5px solid #000;
+            position: relative;
+        }
+
+        .clock_dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5px 0 0 -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background: #000;
+        }
+
+        .clock_dot div {
+            position: absolute;
+            top: -10px;
+            left: 2.5px;
+            background: #000;
+            transform-origin: 2.5px 16px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .clock_second {
+            width: 5px;
+            height: 150px;
+        }
+
+        .clock_minute {
+            width: 5px;
+            height: 110px;
+        }
+
+        .clock_hour {
+            width: 5px;
+            height: 80px;
+        }
+
+        .clock_num {
+            width: 20px;
+            text-align: center;
+            height: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -10px;
+            transform-origin: 10px 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock_box">
+        <div class="clock_dot">
+            <div class="clock_second"></div>
+            <div class="clock_minute"></div>
+            <div class="clock_hour"></div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    class Clock {//钟表初始化一系列操作
+        constructor() {  //声明初始化时分秒
+            this.secoud = 0;
+            this.minute = 0;
+            this.hour = 0;
+        }
+        init() {
+            for (var i = 0; i < 12; i++) {
+                var div = document.createElement('div');
+                div.innerHTML = i + 1;
+                div.className = "clock_num";
+                document.getElementsByClassName('clock_box')[0].appendChild(div);
+            }
+            var numItem = document.getElementsByClassName('clock_num');
+            for (var i = 0; i < 12; i++) {
+                numItem[i].style.transform = "rotateZ(" + Number(i * 30 + 30) + "deg)";
+            }
+            const date = new Date();
+            this.second = date.getSeconds();
+            this.minute = date.getMinutes();
+            this.hour = date.getHours();
+            document.getElementsByClassName('clock_second')[0].style.transform = "rotateZ(" + Number(this.second * 6 + 180) + "deg)";
+            document.getElementsByClassName('clock_minute')[0].style.transform = "rotateZ(" + Number(this.minute * 6 + 180) + "deg)";
+            document.getElementsByClassName('clock_hour')[0].style.transform = "rotateZ(" + Number(this.hour * 30 + 180) + "deg)";
+            let play = new Play(clock);
+            play.secoud()
+        }
+    }
+    class Play {//钟表计时
+        constructor() { //声明动画开始时分秒
+            const date = new Date();
+            this.s = date.getSeconds();
+            this.m = date.getMinutes();
+            this.h = date.getHours();
+        }
+        secoud() {
+            const self = this;//防止指向冲突
+            setTimeout(function () {
+                requestAnimationFrame(function () {
+                    if (self.s > 59) {//秒针转一圈
+                        self.m++;
+                        self.s = 0;
+                        self.minute();
+                    } else {
+                        document.getElementsByClassName('clock_second')[0].style.transform = "rotateZ(" + Number(self.s * 6 + 180) + "deg)";
+                        self.s++;
+                    }
+                    self.secoud();
+                })
+            }, 1000);
+        }
+        minute() {
+            if (this.m > 59) {//分针转一圈
+                this.h++;
+                this.m = 0;
+                this.hour();
+            } else {
+                this.m++;
+                document.getElementsByClassName('clock_minute')[0].style.transform = "rotateZ(" + Number(this.minute * 6 + 180) + "deg)";
+                this.minute();
+            }
+        }
+        hour() {
+            document.getElementsByClassName('clock_hour')[0].style.transform = "rotateZ(" + Number(this.minute * 6 + 180) + "deg)";
+        }
+    }
+    let clock = new Clock();
+    clock.init();
+</script>
+
+</html>

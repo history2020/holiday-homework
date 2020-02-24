@@ -1,0 +1,14 @@
+<!-- TODO:
+点击一级导航，跳到视频列表页
+点击视频卡片跳到视频播放页 -->
+<view class="navbar-container">
+    <!-- 1.使用一个滚动的容器 -->
+    <scroll-view class="navbar-box" scroll-x="true">
+        <!-- 在小程序里无法给事件绑定的函数显示传参，只能用data-prop传参，在函数体中调用dataset的对象来获取元素上自定义的参数 -->
+        <view class="{{index===activeIndex?'nav-active':''}}" wx:for="{{data}}" wx:key="{{index}}" data-index="{{index}}" bind:tap="setIndex">
+            <navigator class="" target="" url="/pages/tvlist/tvlist?id={{item.id}}">
+                {{item.name}}
+            </navigator>
+        </view>
+    </scroll-view>
+</view>

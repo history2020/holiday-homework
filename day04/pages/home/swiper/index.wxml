@@ -1,0 +1,9 @@
+<!-- 声明模板 -->
+<template name="swiper">
+    <swiper style="padding-top:20px " indicator-dots autoplay interval="{{1500}}" circular>
+        <!-- 轮播的每页 -->
+        <swiper-item wx:for="{{list}}" wx:key="{{index}}">
+            <image style="witdh:374px" src="{{item.imgSrc}}" lazy-load="true" />
+        </swiper-item>
+    </swiper>
+</template>

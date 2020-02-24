@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "Videocart": "../../components/videocart/videocart"
+
+    }
+}

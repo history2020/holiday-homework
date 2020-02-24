@@ -1,0 +1,26 @@
+/* components/header/header.wxss */
+.logo image {
+    width: 50rpx;
+    height: 50rpx;
+    padding-top: 22rpx;
+
+}
+
+.heade-me {
+    display: block;
+    margin-top: 15rpx;
+}
+
+.header-waper {
+    display: flex;
+    /* align-items: center; */
+}
+
+.header-waper view {
+    margin: 0 10rpx;
+
+}
+
+.heade-search[size="mini"] {
+    font-size: 10rpx;
+}

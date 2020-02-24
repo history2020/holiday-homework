@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+        border-top: 20px solid green;
+        background-color: red;
+        position: absolute;
+        left: 0;
+    }
+</style>
+
+<body>
+    <button>400</button>
+    <button>800</button>
+    <div class="div"></div>
+    <br>
+    <button id='show'>抢购</button>
+
+    <div id="box">0</div>
+
+
+
+    <script>
+        let oBtn = document.getElementById('show');
+        let oBox = document.getElementById('box');
+        /*
+            handle:buy函数
+            wait:规定在一秒钟内只能执行一次
+        */
+        function throttle(handle, wait) {
+            let lastTime = 0;
+            return function(e) {
+                let nowTime = new Date().getTime()
+                if (nowTime - lastTime > wait) {
+                    handle();
+                    lastTime = nowTime;
+                }
+            }
+        }
+
+        function buy() {
+            oBox.innerText = parseInt(oBox.innerText) + 1
+        }
+        oBtn.onclick = throttle(buy, 1000)
+
+
+        //防抖
+        // 触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+        //匀速动画函数
+        var div = document.querySelector('.div');
+        var btn = document.querySelectorAll('button')[0];
+        var btn0 = document.querySelectorAll('button')[1];
+
+        btn.onclick = function() {
+            animateSlowPerfect(div, 400)
+        }
+        btn0.onclick = function() {
+            animateSlowPerfect(div, 800)
+        }
+        var animate = function(dom, end) {
+                //清除定时器防止叠加
+                clearInterval(dom.timer);
+                dom.timer = setInterval(function() {
+                    var leader = dom.offsetLeft;
+                    var step = 15;
+                    //处理步长的方向
+                    step = end > leader ? step : -step;
+                    if (Math.abs(end - leader) > Math.abs(step)) {
+                        //终点到起点的距离大于步长
+                        leader += step;
+                        dom.style.left = leader + 'px';
+                    } else {
+                        //1.终点和起点的距离不足一个步长
+                        //2.到达终点
+                        //定位到终点 清除定时器
+                        dom.style.left = end + 'px';
+                        clearInterval(dom.timer);
+                    }
+                }, 15)
+            }
+            //缓动动画函数
+            //起点 终点 步长   区别方式不同
+            //通过步长控制运动速度
+        var animateSlowly = function(dom, end) {
+                dom.timer1 = setInterval(function() {
+                    //测试定时器是否清除
+                    console.log('没清除')
+                        //1.确定三要素
+                    var leader = dom.offsetLeft;
+                    //jquery开发者
+                    var step = (end - leader) / 10;
+                    if (step <= 1) {
+                        step = Math.ceil(step);
+                    }
+                    //2.实现动画 判断还未到达终点
+                    if (Math.abs(end - leader) > Math.abs(step)) {
+                        //更新
+                        leader += step;
+                        //定位
+                        dom.style.left = leader + 'px';
+                    } else {
+                        dom.style.left = end + 'px';
+                        clearInterval(dom.timer1);
+                    }
+                }, 15)
+            }
+            //有果推因
+            //缓动动画走到最后，步长会小于一，一旦小于一就永远都到达终点，距离也不会小于步长；
+            //当步长小于1px 就将步长固定为1px
+
+        //缓动动画完善
+        var animateSlowPerfect = function(dom, end) {
+                //先清除防止定时器叠加
+                clearInterval(dom.timer);
+                dom.timer = setInterval(function() {
+                    //1.三要素
+                    var leader = dom.offsetLeft;
+                    //step自带正反方向
+                    var step = (end - leader) / 10;
+                    //左右都能走
+                    if (Math.abs(step) <= 1) {
+                        if (step > 0) {
+                            step = 1;
+                        } else {
+                            step = -1;
+                        }
+                    }
+                    //2.动画
+                    if (Math.abs(end - leader) > Math.abs(step)) {
+                        leader += step;
+                        dom.style.left = leader + 'px';
+                    } else {
+                        dom.style.left = end + 'px';
+                        clearInterval(dom.timer);
+                    }
+                }, 15)
+            }
+            //把轮播图动画替换为缓动
+    </script>
+    <script>
+        // 按照设定的时间固定执行一次函数，比如200ms一次。注意：固定就是你在mousemove过程中，执行这个节流函数，它一定是200ms（你设定的定时器延迟时间）内执行一次。没到200ms，一定会返回，没有执行回调函数的。 节流
+        //窗口调整(resize)、页面滚动(scroll)、抢购疯狂点击(movedown)
+
+
+
+
+        //抖动停止后的时间超过设定的时间时执行一次函数。注意：这里的抖动停止表示你停止了触发这个函数，从这个时间点开始计算，当间隔时间等于你设定时间，才会执行里面的回调函数。如果你一直在触发这个函数并且两次触发间隔小于设定时间，则一定不会到回调函数那一步。
+        // 函数防抖就是函数需要频繁触发情况时，只有足够空闲的时候，才会执行一次。好像公交司机会等人都上车后才会开车一样
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+/**app.wxss**/
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 200rpx 0;
+    box-sizing: border-box;
+}
+
+/*全局样式 */
+.video-cart-box {
+    display: flex;
+    /* 容器换行 */
+    flex-wrap: wrap;
+    padding-top: 40rpx;
+}
+
+.video-cart-item {
+    /* 给子元素一个份额 共10 各5 */
+    flex: 5;
+}

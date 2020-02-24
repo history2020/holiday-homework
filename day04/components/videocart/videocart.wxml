@@ -1,0 +1,11 @@
+<!-- components/videocart/videocart.wxml -->
+<view style="text-align:center" bind:tap="goTvDetail">
+    <!-- 图片容器 -->
+    <view class="videoimg">
+        <image class="" src="{{data.img}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+    </view>
+    <!-- 文字 -->
+    <view class="videotext">
+        <view>{{data.name}}</view>
+    </view>
+</view>
